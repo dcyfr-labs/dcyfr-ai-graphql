@@ -17,6 +17,7 @@ export class UserService {
   async findById(id: string): Promise<User | null> {
     const user = db.findUserById(id);
     if (!user) return null;
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { passwordHash: _, ...rest } = user;
     return rest;
   }
@@ -24,6 +25,7 @@ export class UserService {
   async findByEmail(email: string): Promise<User | null> {
     const user = db.findUserByEmail(email);
     if (!user) return null;
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { passwordHash: _, ...rest } = user;
     return rest;
   }
@@ -77,6 +79,7 @@ export class UserService {
       throw new Error('Invalid credentials');
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { passwordHash: _, ...userWithoutPassword } = user;
 
     const authUser: AuthUser = {

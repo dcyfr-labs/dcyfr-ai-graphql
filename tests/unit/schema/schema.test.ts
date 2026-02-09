@@ -3,7 +3,6 @@
  */
 
 import { describe, it, expect } from 'vitest';
-import { buildSchema } from 'graphql';
 import { makeExecutableSchema } from '@graphql-tools/schema';
 import { typeDefs } from '../../../src/schema/typeDefs/index.js';
 import { resolvers } from '../../../src/resolvers/index.js';

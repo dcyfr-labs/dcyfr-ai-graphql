@@ -120,12 +120,14 @@ class InMemoryDB {
     return ids.map((id) => {
       const user = this.users.get(id);
       if (!user) return null;
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { passwordHash: _, ...rest } = user;
       return rest;
     });
   }
 
   listUsers(limit = 20, afterCursor?: string): { users: User[]; hasMore: boolean } {
+     
     const allUsers = [...this.users.values()].map(({ passwordHash: _, ...u }) => u);
     let startIndex = 0;
 
@@ -152,6 +154,7 @@ class InMemoryDB {
       updatedAt: now,
     };
     this.users.set(id, user);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { passwordHash: _, ...rest } = user;
     return rest;
   }
@@ -161,6 +164,7 @@ class InMemoryDB {
     if (!user) return null;
     const updated = { ...user, ...data, updatedAt: new Date() };
     this.users.set(id, updated);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { passwordHash: _, ...rest } = updated;
     return rest;
   }

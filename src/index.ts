@@ -142,7 +142,7 @@ export async function startServer() {
     httpServer.listen({ port: config.port }, resolve);
   });
 
-  console.log(`
+  console.info(`
 🚀 GraphQL Server ready!
    HTTP:      http://localhost:${config.port}/graphql
    WebSocket: ws://localhost:${config.port}/graphql

@@ -17,7 +17,7 @@ export function logOperation(entry: LogEntry): void {
   const { timestamp, operation, duration, ip, userId } = entry;
   const userInfo = userId ? ` user=${userId}` : '';
   const ipInfo = ip ? ` ip=${ip}` : '';
-  console.log(`[GraphQL] ${timestamp} | ${operation ?? 'anonymous'} | ${duration}ms${userInfo}${ipInfo}`);
+  console.info(`[GraphQL] ${timestamp} | ${operation ?? 'anonymous'} | ${duration}ms${userInfo}${ipInfo}`);
 }
 
 /**

@@ -4,7 +4,7 @@
 
 import { describe, it, expect } from 'vitest';
 import { extractUser, requireAuth, requireAdmin } from '../../../src/middleware/auth.js';
-import { RateLimiter } from '../../../src/middleware/rate-limit.js';
+import { RateLimiter, createRateLimiter } from '../../../src/middleware/rate-limit.js';
 import { loadConfig } from '../../../src/config/env.js';
 import { createToken } from '../../../src/lib/utils/auth.js';
 import { UserRole } from '../../../src/lib/types.js';
@@ -115,6 +115,23 @@ describe('Rate Limiter', () => {
         expect(limiter.check('expired-ip')).toBe(true);
         resolve();
       }, 10);
+    });
+  });
+
+  describe('createRateLimiter', () => {
+    it('should create a rate limiter with periodic cleanup', () => {
+      const limiter = createRateLimiter({ windowMs: 60000, maxRequests: 10 });
+      
+      expect(limiter.check('test-ip')).toBe(true);
+      expect(limiter.remaining('test-ip')).toBe(9);
+    });
+
+    it('should return a functional RateLimiter instance', () => {
+      const limiter = createRateLimiter({ windowMs: 1000, maxRequests: 2 });
+      
+      expect(limiter.check('key-1')).toBe(true);
+      expect(limiter.check('key-1')).toBe(true);
+      expect(limiter.check('key-1')).toBe(false); // Over limit
     });
   });
 });

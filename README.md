@@ -2,6 +2,8 @@
 
 Production-ready GraphQL API server template with Apollo Server 4, schema-first design, type-safe resolvers, and real-time subscriptions. Perfect for building scalable APIs with best practices built-in.
 
+> **📦 Starter Template** — This is a **starter template** for cloning, not an npm package. Use `git clone` or download the source to create your own GraphQL API server. This package is marked `private: true` and is not published to npm.
+
 ## Features
 
 ### Core GraphQL

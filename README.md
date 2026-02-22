@@ -4,6 +4,35 @@ Production-ready GraphQL API server template with Apollo Server 4, schema-first 
 
 > **📦 Starter Template** — This is a **starter template** for cloning, not an npm package. Use `git clone` or download the source to create your own GraphQL API server. This package is marked `private: true` and is not published to npm.
 
+---
+
+## ⚡ 30-Second Quick Start
+
+```bash
+# Clone template
+npx degit dcyfr/dcyfr-ai-graphql my-graphql-api
+cd my-graphql-api
+
+# Install and start
+npm install
+npm run dev
+# ✅ GraphQL server at http://localhost:4000/graphql
+# 📖 Apollo Sandbox ready
+```
+
+---
+
+## 🧭 Related Packages
+
+| Package | Purpose | Type |
+|---------|---------|------|
+| [@dcyfr/ai](../dcyfr-ai) | Core AI framework | npm package |
+| [@dcyfr/ai-api](../dcyfr-ai-api) | REST API template | Template |
+| [@dcyfr/ai-nodejs](../dcyfr-ai-nodejs) | Node.js starter | Template |
+| [dcyfr-labs](../dcyfr-labs) | Production Next.js app | Application |
+
+---
+
 ## Features
 
 ### Core GraphQL

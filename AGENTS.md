@@ -48,3 +48,8 @@ Schema (SDL) → Resolvers → Services → Data Store
 - In-memory DB is a singleton - tests share state (be aware of ordering)
 - Custom scalars (DateTime, JSON) are in `src/schema/scalars/`
 - PubSub is in-memory - replace with Redis for production multi-instance
+
+## Quality Gates
+- TypeScript: 0 errors (`npm run typecheck`)
+- Tests: ≥99% pass rate (`npm run test`)
+- Lint: 0 errors (`npm run lint`)

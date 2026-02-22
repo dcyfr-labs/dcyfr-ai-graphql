@@ -475,7 +475,7 @@ Automatic request-scoped batching and caching:
 
 ## Contributing
 
-Contributions welcome! See [CONTRIBUTING.md](../../CONTRIBUTING.md) for guidelines.
+Contributions welcome! See [CONTRIBUTING.md](../CONTRIBUTING.md) for guidelines.
 
 ## License
 

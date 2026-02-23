@@ -1,5 +1,15 @@
 # @dcyfr/ai-graphql
 
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/dcyfr/dcyfr-ai-graphql)
+
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.7-blue?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Node.js](https://img.shields.io/badge/Node.js-24+-green?style=flat-square&logo=node.js&logoColor=white)](https://nodejs.org/)
+[![GraphQL](https://img.shields.io/badge/GraphQL-E10098?style=flat-square&logo=graphql&logoColor=white)](https://graphql.org/)
+[![Apollo](https://img.shields.io/badge/Apollo-Server-311C87?style=flat-square&logo=apollo-graphql&logoColor=white)](https://www.apollographql.com/)
+[![Template](https://img.shields.io/badge/Template-Starter-blue?style=flat-square&logo=github)](https://github.com/dcyfr)
+[![Sponsor](https://img.shields.io/badge/sponsor-30363D?style=flat-square&logo=GitHub-Sponsors&logoColor=#EA4AAA)](https://github.com/sponsors/dcyfr)
+[![License](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)](LICENSE)
+
 Production-ready GraphQL API server template with Apollo Server 4, schema-first design, type-safe resolvers, and real-time subscriptions. Perfect for building scalable APIs with best practices built-in.
 
 > **📦 Starter Template** — This is a **starter template** for cloning, not an npm package. Use `git clone` or download the source to create your own GraphQL API server. This package is marked `private: true` and is not published to npm.

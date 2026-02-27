@@ -1,5 +1,11 @@
 # @dcyfr/ai-graphql
 
+## [Unreleased]
+
+### Security
+
+- **CORS hardening** — Replaced wildcard `*` origin with a comma-separated allowlist. `CORS_ORIGIN` env var now parsed into an array in `src/config/env.ts`; Apollo Server `cors` option uses an origin callback that rejects unlisted origins. `.env.example` documents the new format.
+
 ## 1.0.0
 
 ### Major Changes

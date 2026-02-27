@@ -88,7 +88,18 @@ export async function startServer() {
   app.use(
     '/graphql',
     cors<cors.CorsRequest>({
-      origin: config.cors.origin,
+      origin: (origin, callback) => {
+        // Allow requests with no origin (e.g., mobile apps, GraphQL Playground, server-to-server)
+        if (!origin) return callback(null, true);
+        
+        const allowedOrigins = config.cors.origin;
+        if (allowedOrigins.includes(origin)) {
+          callback(null, true);
+        } else {
+          console.warn(`[CORS] Blocked GraphQL request from origin: ${origin}`);
+          callback(new Error('Not allowed by CORS'));
+        }
+      },
       credentials: config.cors.credentials,
     }),
     express.json(),

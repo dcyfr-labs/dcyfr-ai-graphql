@@ -205,7 +205,8 @@
 [90mstderr[2m | tests/unit/resolvers/auth.resolver.test.ts[2m > [22m[2mAuth Resolvers[2m > [22m[2mMutation.register[2m > [22m[2mshould reject duplicate email registration
 [22m[39m⚠️  WARNING: Using insecure development JWT secret. Set JWT_SECRET environment variable for production use.
 
-[90mstderr[2m | tests/unit/resolvers/post.resolver.test.ts[2m > [22m[2mPost Resolvers[2m > [22m[2mQuery.posts[2m > [22m[2mshould list posts with pagination
+ [32m✓[39m tests/unit/resolvers/health.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 50[2mms[22m[39m
+[90mstderr[2m | tests/unit/resolvers/post.resolver.test.ts[2m > [22m[2mPost Resolvers[2m > [22m[2mQuery.post[2m > [22m[2mshould fetch a post by id
 [22m[39m⚠️  WARNING: Using insecure development JWT secret. Set JWT_SECRET environment variable for production use.
 
 [90mstderr[2m | tests/unit/resolvers/comment.resolver.test.ts[2m > [22m[2mComment Resolvers[2m > [22m[2mQuery.comments[2m > [22m[2mshould fetch comments for a post
@@ -217,7 +218,7 @@
 [90mstderr[2m | tests/unit/resolvers/comment.resolver.test.ts[2m > [22m[2mComment Resolvers[2m > [22m[2mQuery.comments[2m > [22m[2mshould fetch comments for a post
 [22m[39m⚠️  WARNING: Using insecure development JWT secret. Set JWT_SECRET environment variable for production use.
 
-[90mstderr[2m | tests/unit/resolvers/comment.resolver.test.ts[2m > [22m[2mComment Resolvers[2m > [22m[2mMutation.createComment[2m > [22m[2mshould create a comment when authenticated
+[90mstderr[2m | tests/unit/resolvers/user.resolver.test.ts[2m > [22m[2mUser Resolvers[2m > [22m[2mQuery.users[2m > [22m[2mshould list users with pagination
 [22m[39m⚠️  WARNING: Using insecure development JWT secret. Set JWT_SECRET environment variable for production use.
 
 [90mstderr[2m | tests/unit/resolvers/post.resolver.test.ts[2m > [22m[2mPost Resolvers[2m > [22m[2mQuery.post[2m > [22m[2mshould fetch a post by id
@@ -286,13 +287,13 @@
 [?2026l[?2026h[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[90mstderr[2m | tests/unit/resolvers/post.resolver.test.ts[2m > [22m[2mPost Resolvers[2m > [22m[2mMutation.createPost[2m > [22m[2mshould reject unauthenticated post creation
 [22m[39m⚠️  WARNING: Using insecure development JWT secret. Set JWT_SECRET environment variable for production use.
 
-[90mstderr[2m | tests/unit/resolvers/auth.resolver.test.ts[2m > [22m[2mAuth Resolvers[2m > [22m[2mMutation.login[2m > [22m[2mshould login with valid credentials
+[90mstderr[2m | tests/unit/resolvers/user.resolver.test.ts[2m > [22m[2mUser Resolvers[2m > [22m[2mMutation.deleteUser[2m > [22m[2mshould reject non-admin delete
 [22m[39m⚠️  WARNING: Using insecure development JWT secret. Set JWT_SECRET environment variable for production use.
 
-[90mstderr[2m | tests/unit/resolvers/auth.resolver.test.ts[2m > [22m[2mAuth Resolvers[2m > [22m[2mMutation.login[2m > [22m[2mshould login with valid credentials
+[90mstderr[2m | tests/unit/resolvers/post.resolver.test.ts[2m > [22m[2mPost Resolvers[2m > [22m[2mMutation.updatePost[2m > [22m[2mshould reject updating another users post
 [22m[39m⚠️  WARNING: Using insecure development JWT secret. Set JWT_SECRET environment variable for production use.
 
-[90mstderr[2m | tests/unit/resolvers/auth.resolver.test.ts[2m > [22m[2mAuth Resolvers[2m > [22m[2mMutation.login[2m > [22m[2mshould reject invalid email
+[90mstderr[2m | tests/unit/resolvers/post.resolver.test.ts[2m > [22m[2mPost Resolvers[2m > [22m[2mMutation.updatePost[2m > [22m[2mshould reject updating another users post
 [22m[39m⚠️  WARNING: Using insecure development JWT secret. Set JWT_SECRET environment variable for production use.
 
 [90mstderr[2m | tests/unit/resolvers/comment.resolver.test.ts[2m > [22m[2mComment Resolvers[2m > [22m[2mMutation.createComment[2m > [22m[2mshould reject comment on non-existent post

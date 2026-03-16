@@ -1,7 +1,7 @@
 
 
 > @dcyfr/ai-graphql@1.0.0 lint
-> eslint src/ tests/ --cache --cache-location .cache/eslint
+> eslint src/ tests/
 
 [0m[0m
 [0m[4m/home/drew/code/dcyfr-workspace/dcyfr-ai-graphql/tests/unit/schema/scalars.test.ts[24m[0m

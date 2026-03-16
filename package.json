@@ -34,7 +34,7 @@
     "@graphql-tools/schema": "^10.0.0",
     "cors": "^2.8.5",
     "express": "^5.2.1",
-    "graphql": "^16.9.0",
+    "graphql": "^16.13.1",
     "graphql-subscriptions": "^2.0.0",
     "graphql-tag": "^2.12.6",
     "graphql-ws": "^5.16.0",

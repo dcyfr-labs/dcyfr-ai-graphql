@@ -30,6 +30,7 @@
   },
   "dependencies": {
     "@apollo/server": "^5.4.0",
+    "@as-integrations/express5": "^1.1.2",
     "@graphql-tools/merge": "^9.0.0",
     "@graphql-tools/schema": "^10.0.0",
     "cors": "^2.8.5",

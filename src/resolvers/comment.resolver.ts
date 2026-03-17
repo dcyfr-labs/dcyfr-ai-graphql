@@ -43,9 +43,9 @@ export const commentResolvers = {
   Subscription: {
     commentAdded: {
       subscribe: withFilter(
-        () => pubsub.asyncIterator([EVENTS.COMMENT_ADDED]),
-        (payload: { commentAdded: Comment }, variables: { postId: string }) => {
-          return payload.commentAdded.postId === variables.postId;
+        () => pubsub.asyncIterableIterator([EVENTS.COMMENT_ADDED]),
+        (payload?: { commentAdded: Comment }, variables?: { postId: string }) => {
+          return payload?.commentAdded.postId === variables?.postId;
         }
       ),
     },

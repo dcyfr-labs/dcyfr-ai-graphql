@@ -74,11 +74,11 @@ export const postResolvers = {
 
   Subscription: {
     postCreated: {
-      subscribe: () => pubsub.asyncIterator([EVENTS.POST_CREATED]),
+      subscribe: () => pubsub.asyncIterableIterator([EVENTS.POST_CREATED]),
     },
 
     postUpdated: {
-      subscribe: () => pubsub.asyncIterator([EVENTS.POST_UPDATED]),
+      subscribe: () => pubsub.asyncIterableIterator([EVENTS.POST_UPDATED]),
     },
   },
 

@@ -34,18 +34,19 @@ npm run dev
 
 ## 🧭 Related Packages
 
-| Package | Purpose | Type |
-|---------|---------|------|
-| [@dcyfr/ai](../dcyfr-ai) | Core AI framework | npm package |
-| [@dcyfr/ai-api](../dcyfr-ai-api) | REST API template | Template |
-| [@dcyfr/ai-nodejs](../dcyfr-ai-nodejs) | Node.js starter | Template |
-| [dcyfr-labs](../dcyfr-labs) | Production Next.js app | Application |
+| Package                                | Purpose                | Type        |
+| -------------------------------------- | ---------------------- | ----------- |
+| [@dcyfr/ai](../dcyfr-ai)               | Core AI framework      | npm package |
+| [@dcyfr/ai-api](../dcyfr-ai-api)       | REST API template      | Template    |
+| [@dcyfr/ai-nodejs](../dcyfr-ai-nodejs) | Node.js starter        | Template    |
+| [dcyfr-labs](../dcyfr-labs)            | Production Next.js app | Application |
 
 ---
 
 ## Features
 
 ### Core GraphQL
+
 - **Apollo Server 4** - Latest Apollo Server with Express integration and health checks
 - **Schema-First Design** - GraphQL SDL type definitions with modular organization
 - **Type-Safe Resolvers** - Full TypeScript types for all resolver contexts
@@ -53,23 +54,27 @@ npm run dev
 - **Custom Scalars** - DateTime, JSON with validation
 
 ### Performance & Optimization
+
 - **DataLoader Pattern** - Automatic N+1 query prevention with intelligent batching
 - **Cursor Pagination** - Relay-style connections with cursor-based pagination
 - **Response Caching** - Field-level caching with TTL support
 - **Query Complexity** - Protection against expensive queries
 
 ### Security & Auth
+
 - **JWT Authentication** - Bearer token auth with role-based access control
 - **Field-Level Authorization** - `@auth` directive for granular permissions
 - **Rate Limiting** - Request throttling to prevent abuse
 - **Input Validation** - Zod schemas for all mutation inputs
 
 ### Real-Time Features
+
 - **WebSocket Subscriptions** - Server-sent events with `graphql-ws`
 - **Event-Based PubSub** - Real-time notifications for posts and comments
 - **Subscription Filtering** - Server-side event filtering
 
 ### Developer Experience
+
 - **Hot Reload** - Instant feedback during development with tsx watch mode
 - **Request Logging** - Operation-level logging with timing and error tracking
 - **Apollo Sandbox** - Interactive GraphQL IDE built-in
@@ -117,6 +122,8 @@ See [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) for comprehensive deployment guides
 
 ## Examples
 
+See [`examples/README.md`](examples/README.md) for an indexed runbook and focused type-check commands.
+
 This template includes comprehensive executable examples demonstrating GraphQL patterns:
 
 - **[examples/basic-queries/client.ts](examples/basic-queries/client.ts)** - Query patterns (pagination, filtering, nested relationships)
@@ -126,6 +133,7 @@ This template includes comprehensive executable examples demonstrating GraphQL p
 - **[examples/custom-directives.ts](examples/custom-directives.ts)** - Schema directives (`@auth`, `@rateLimit`, `@cache`)
 
 Run any example:
+
 ```bash
 tsx examples/basic-queries/client.ts
 tsx examples/auth-flow/client.ts
@@ -278,12 +286,12 @@ This template uses DataLoader to batch and cache database queries:
 
 ```typescript
 // Without DataLoader - N+1 Problem
-posts.forEach(async post => {
+posts.forEach(async (post) => {
   const author = await db.users.findOne({ id: post.authorId }); // N queries!
 });
 
 // With DataLoader - 1 Batched Query
-posts.forEach(async post => {
+posts.forEach(async (post) => {
   const author = await context.loaders.user.load(post.authorId); // Batched!
 });
 ```
@@ -293,6 +301,7 @@ See [docs/PERFORMANCE.md](docs/PERFORMANCE.md) for comprehensive optimization st
 ### Caching Strategies
 
 **Field-Level Caching:**
+
 ```graphql
 type Query {
   latestPosts: [Post!]! @cache(ttl: 300) # Cache for 5 minutes
@@ -300,12 +309,13 @@ type Query {
 ```
 
 **Redis Caching (Production):**
+
 ```typescript
-import { RedisCache } from 'apollo-server-cache-redis';
+import { RedisCache } from "apollo-server-cache-redis";
 
 const server = new ApolloServer({
   cache: new RedisCache({
-    host: 'localhost',
+    host: "localhost",
     port: 6379,
   }),
 });
@@ -314,7 +324,7 @@ const server = new ApolloServer({
 ### Query Complexity Limiting
 
 ```typescript
-import { createComplexityPlugin } from 'graphql-query-complexity';
+import { createComplexityPlugin } from "graphql-query-complexity";
 
 const server = new ApolloServer({
   plugins: [
@@ -330,24 +340,26 @@ const server = new ApolloServer({
 
 ### Platform Options
 
-| Platform | Deployment Time | Scaling | Best For |
-|----------|----------------|---------|----------|
-| **Docker** | 5 min | Manual/Swarm | Self-hosted, full control |
-| **Kubernetes** | 30 min | Automatic HPA | Enterprise, high availability |
-| **AWS Lambda** | 10 min | Automatic | Serverless, variable traffic |
-| **Railway** | 2 min | Automatic | Rapid prototyping |
-| **Render** | 3 min | Automatic | MVP, small teams |
-| **Fly.io** | 5 min | Edge deployment | Global distribution |
+| Platform       | Deployment Time | Scaling         | Best For                      |
+| -------------- | --------------- | --------------- | ----------------------------- |
+| **Docker**     | 5 min           | Manual/Swarm    | Self-hosted, full control     |
+| **Kubernetes** | 30 min          | Automatic HPA   | Enterprise, high availability |
+| **AWS Lambda** | 10 min          | Automatic       | Serverless, variable traffic  |
+| **Railway**    | 2 min           | Automatic       | Rapid prototyping             |
+| **Render**     | 3 min           | Automatic       | MVP, small teams              |
+| **Fly.io**     | 5 min           | Edge deployment | Global distribution           |
 
 ### Quick Deploy Commands
 
 **Docker:**
+
 ```bash
 docker build -t graphql-api .
 docker run -p 4000:4000 -e JWT_SECRET=secret graphql-api
 ```
 
 **Kubernetes:**
+
 ```bash
 kubectl apply -f k8s/deployment.yml
 kubectl apply -f k8s/service.yml
@@ -355,6 +367,7 @@ kubectl apply -f k8s/hpa.yml
 ```
 
 **AWS Lambda:**
+
 ```bash
 npm install -g serverless
 serverless deploy
@@ -365,12 +378,14 @@ See [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) for detailed platform guides.
 ### Environment Configuration
 
 **Required:**
+
 ```bash
 PORT=4000
 JWT_SECRET=your-secret-key-min-32-chars
 ```
 
 **Recommended for Production:**
+
 ```bash
 NODE_ENV=production
 ALLOWED_ORIGINS=https://yourapp.com
@@ -379,6 +394,7 @@ RATE_LIMIT_WINDOW_MS=60000
 ```
 
 **Optional:**
+
 ```bash
 JWT_EXPIRES_IN=7d
 DATABASE_URL=postgresql://...
@@ -390,7 +406,7 @@ REDIS_URL=redis://...
 ### Apollo Studio Integration
 
 ```typescript
-import { ApolloServerPluginUsageReporting } from '@apollo/server/plugin/usageReporting';
+import { ApolloServerPluginUsageReporting } from "@apollo/server/plugin/usageReporting";
 
 const server = new ApolloServer({
   plugins: [
@@ -404,15 +420,15 @@ const server = new ApolloServer({
 ### Prometheus Metrics
 
 ```typescript
-import { register, collectDefaultMetrics } from 'prom-client';
+import { register, collectDefaultMetrics } from "prom-client";
 
 collectDefaultMetrics();
 
 // Custom GraphQL metrics
 const operationCounter = new Counter({
-  name: 'graphql_operations_total',
-  help: 'Total GraphQL operations',
-  labelNames: ['operation', 'status'],
+  name: "graphql_operations_total",
+  help: "Total GraphQL operations",
+  labelNames: ["operation", "status"],
 });
 ```
 
@@ -442,14 +458,14 @@ Before deploying to production:
 
 This template uses simplified implementations for demo purposes. For production:
 
-| Component | Template | Production |
-|-----------|----------|------------|
-| Database | In-memory store | PostgreSQL + Drizzle ORM |
-| Auth | Base64 tokens | `jsonwebtoken` or `jose` |
-| Passwords | Simple hash | `bcrypt` or `argon2` |
-| Rate Limiting | In-memory | Redis |
-| PubSub | In-memory | Redis PubSub |
-| DataLoader | Custom | `dataloader` npm package |
+| Component     | Template        | Production               |
+| ------------- | --------------- | ------------------------ |
+| Database      | In-memory store | PostgreSQL + Drizzle ORM |
+| Auth          | Base64 tokens   | `jsonwebtoken` or `jose` |
+| Passwords     | Simple hash     | `bcrypt` or `argon2`     |
+| Rate Limiting | In-memory       | Redis                    |
+| PubSub        | In-memory       | Redis PubSub             |
+| DataLoader    | Custom          | `dataloader` npm package |
 
 ## Architecture Highlights
 
@@ -458,6 +474,7 @@ This template uses simplified implementations for demo purposes. For production:
 This template uses **schema-first** approach with GraphQL SDL:
 
 **Pros:**
+
 - Designer/client teams can work independently
 - Schema serves as contract between frontend/backend
 - Better for API-first development
@@ -468,6 +485,7 @@ This template uses **schema-first** approach with GraphQL SDL:
 ### Resolver Organization
 
 Resolvers are organized by domain entity:
+
 - `user.resolver.ts` - User queries/mutations
 - `post.resolver.ts` - Post CRUD
 - `comment.resolver.ts` - Comment operations
@@ -478,6 +496,7 @@ Business logic is separated into services (`src/services/`).
 ### DataLoader Pattern
 
 Automatic request-scoped batching and caching:
+
 - Created fresh per-request via context
 - Batches multiple `load()` calls into single query
 - Caches results for request duration

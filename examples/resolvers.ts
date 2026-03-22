@@ -18,6 +18,69 @@ import DataLoader from 'dataloader';
 import { GraphQLError } from 'graphql';
 
 // ============================================================================
+// Domain Types
+// ============================================================================
+
+interface User {
+  id: string;
+  name: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+  role: string;
+  createdAt: Date | string;
+}
+
+interface Post {
+  id: string;
+  title: string;
+  content: string;
+  authorId: string;
+  published: boolean;
+  tags: string[];
+}
+
+interface Comment {
+  id: string;
+  postId: string;
+  content: string;
+}
+
+interface CreatePostInput {
+  title: string;
+  content: string;
+  tags?: string[];
+  published?: boolean;
+}
+
+interface UpdatePostInput {
+  title?: string;
+  content?: string;
+  tags?: string[];
+  published?: boolean;
+}
+
+// Mock database client (replace with real Prisma/Drizzle client in production)
+const db = {
+  users: {
+    findMany: async (_options?: object): Promise<User[]> => [],
+  },
+  posts: {
+    findMany: async (_options?: object): Promise<Post[]> => [],
+    count: async (_options?: object): Promise<number> => 0,
+    create: async (_options: object): Promise<Post> =>
+      ({ id: '', title: '', content: '', authorId: '', published: false, tags: [] }),
+    update: async (_options: object): Promise<Post> =>
+      ({ id: '', title: '', content: '', authorId: '', published: false, tags: [] }),
+    findUnique: async (_options: object): Promise<Post | null> => null,
+    delete: async (_options: object): Promise<void> => undefined,
+  },
+  comments: {
+    findMany: async (_options?: object): Promise<Comment[]> => [],
+  },
+};
+
+// ============================================================================
 // DataLoader Setup (N+1 Prevention)
 // ============================================================================
 
@@ -116,7 +179,6 @@ const User = {
    * Returns data directly from root object
    */
   id: (parent: User) => parent.id,
-  email: (parent: User) => parent.email,
   name: (parent: User) => parent.name,
 
   /**
@@ -186,7 +248,6 @@ const User = {
 const Post = {
   id: (parent: Post) => parent.id,
   title: (parent: Post) => parent.title,
-  content: (parent: Post) => parent.content,
 
   /**
    * Async field resolver with DataLoader

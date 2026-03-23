@@ -70,10 +70,14 @@
     "schema-first",
     "dcyfr"
   ],
-  "author": "DCYFR <hello@dcyfr.ai>",
+  "author": "DCYFR Labs",
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/dcyfr/dcyfr-ai-graphql"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/dcyfr/dcyfr-ai-graphql/issues"
+  },
+  "homepage": "https://github.com/dcyfr/dcyfr-ai-graphql#readme"
 }

@@ -3,6 +3,7 @@
  */
 
 import { mergeResolvers } from '@graphql-tools/merge';
+import type { IResolvers } from '@graphql-tools/utils';
 import { DateTimeScalar, JSONScalar } from '../schema/scalars/index.js';
 import { userResolvers } from './user.resolver.js';
 import { postResolvers } from './post.resolver.js';
@@ -28,7 +29,7 @@ const baseResolvers = {
 /**
  * All resolvers merged into a single resolver map
  */
-export const resolvers = mergeResolvers([
+export const resolvers: IResolvers = mergeResolvers([
   baseResolvers,
   userResolvers,
   postResolvers,

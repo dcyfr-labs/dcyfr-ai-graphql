@@ -75,10 +75,10 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/dcyfr/dcyfr-ai-graphql"
+    "url": "https://github.com/dcyfr-labs/dcyfr-ai-graphql"
   },
   "bugs": {
-    "url": "https://github.com/dcyfr/dcyfr-ai-graphql/issues"
+    "url": "https://github.com/dcyfr-labs/dcyfr-ai-graphql/issues"
   },
-  "homepage": "https://github.com/dcyfr/dcyfr-ai-graphql#readme"
+  "homepage": "https://github.com/dcyfr-labs/dcyfr-ai-graphql#readme"
 }

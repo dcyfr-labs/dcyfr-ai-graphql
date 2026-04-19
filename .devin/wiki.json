@@ -1,0 +1,8 @@
+{
+  "repo_notes": [
+    {
+      "content": "GraphQL API layer for DCYFR AI services. Document the GraphQL schema design, resolver implementations, type system, query/mutation patterns, and integration with underlying AI services and data sources.",
+      "author": "DCYFR Engineering"
+    }
+  ]
+}

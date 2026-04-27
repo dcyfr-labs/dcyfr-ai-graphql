@@ -35,7 +35,7 @@
     "@apollo/server": "^5.5.0",
     "@as-integrations/express5": "^1.1.2",
     "@graphql-tools/merge": "^9.1.8",
-    "@graphql-tools/schema": "^10.0.32",
+    "@graphql-tools/schema": "^10.0.33",
     "cors": "^2.8.5",
     "express": "^5.2.1",
     "graphql": "^16.13.2",

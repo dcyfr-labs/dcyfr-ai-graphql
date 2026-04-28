@@ -80,5 +80,8 @@
   "bugs": {
     "url": "https://github.com/dcyfr-labs/dcyfr-ai-graphql/issues"
   },
-  "homepage": "https://github.com/dcyfr-labs/dcyfr-ai-graphql#readme"
+  "homepage": "https://github.com/dcyfr-labs/dcyfr-ai-graphql#readme",
+  "overrides": {
+    "uuid": "^14.0.0"
+  }
 }

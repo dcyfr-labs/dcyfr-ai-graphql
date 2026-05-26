@@ -21,6 +21,19 @@ jobs:
     environment: production
     
     steps:
+      - name: Mint GitHub App token
+        id: app-token
+        # Only mint when org-level RELEASE_APP_ID is set. `continue-on-error`
+        # makes the workflow degrade-safe: if the App isn't installed on this
+        # repo yet, or secrets are missing, mint fails non-fatally and the
+        # fallback chain picks up RELEASE_TOKEN.
+        if: ${{ vars.RELEASE_APP_ID != '' }}
+        continue-on-error: true
+        uses: actions/create-github-app-token@v2
+        with:
+          app-id: ${{ vars.RELEASE_APP_ID }}
+          private-key: ${{ secrets.RELEASE_APP_PRIVATE_KEY }}
+
       - name: Checkout repository
         uses: actions/checkout@v6
         with:
@@ -28,7 +41,7 @@ jobs:
           # PAT with `workflow` scope when available — GITHUB_TOKEN cannot push
           # tags on commits touching .github/workflows/* (server-side reject).
           # Falls back cleanly; degraded mode no-ops tag push for such releases.
-          token: ${{ secrets.RELEASE_TOKEN || secrets.GITHUB_TOKEN }}
+          token: ${{ steps.app-token.outputs.token || secrets.RELEASE_TOKEN || secrets.GITHUB_TOKEN }}
       
       - name: Setup Node.js
         uses: actions/setup-node@v6

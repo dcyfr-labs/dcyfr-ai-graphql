@@ -53,7 +53,7 @@ jobs:
       # Produce coverage/lcov.info for the scan below; test failures
       # don't block analysis (the gate is non-blocking observability).
       - name: Run tests with coverage
-        run: npm run test:coverage -- --coverage.reporter=lcov --coverage.reporter=text
+        run: npm run test:coverage -- --coverage.reporter=lcov --coverage.reporter=text --coverage.reportOnFailure
         continue-on-error: true
 
       - name: Validate SonarCloud configuration

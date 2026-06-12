@@ -41,6 +41,21 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: '24.13.0'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      # Produce coverage/lcov.info for the scan below; test failures
+      # don't block analysis (the gate is non-blocking observability).
+      - name: Run tests with coverage
+        run: npm run test:coverage -- --coverage.reporter=lcov --coverage.reporter=text
+        continue-on-error: true
+
       - name: Validate SonarCloud configuration
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
@@ -120,3 +135,4 @@ jobs:
           fi
           exit 0
 # triggered: 2026-02-28 automatic-analysis-disabled
+

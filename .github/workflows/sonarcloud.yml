@@ -69,6 +69,54 @@ jobs:
           args: >
             -Dsonar.projectKey=${{ vars.SONAR_PROJECT_KEY }}
             -Dsonar.organization=${{ vars.SONAR_ORGANIZATION }}
-            -Dsonar.qualitygate.wait=true
-            -Dsonar.qualitygate.timeout=300
+
+      # Org policy (2026-06-11): the SonarCloud quality gate is observability,
+      # not a merge gate. The scan step fails only on infrastructure errors
+      # (auth, upload, misconfig); the gate verdict lands in the job summary,
+      # PR decoration, and the dashboard. Do not re-add
+      # -Dsonar.qualitygate.wait=true without an org-wide policy decision.
+      - name: Quality gate status (non-blocking)
+        if: ${{ !cancelled() }}
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: |
+          set +e
+          report=".scannerwork/report-task.txt"
+          summary() { echo "$1" >> "$GITHUB_STEP_SUMMARY"; }
+          if [ ! -f "$report" ]; then
+            summary "### SonarCloud quality gate"
+            summary "No analysis report found — the scan step failed or was skipped."
+            exit 0
+          fi
+          ceTaskUrl=$(sed -n 's/^ceTaskUrl=//p' "$report")
+          dashboardUrl=$(sed -n 's/^dashboardUrl=//p' "$report")
+          analysisId=""; taskStatus=""
+          for _ in $(seq 1 30); do
+            task=$(curl -sf -u "${SONAR_TOKEN}:" "$ceTaskUrl")
+            taskStatus=$(printf '%s' "$task" | jq -r '.task.status // empty' 2>/dev/null)
+            case "$taskStatus" in
+              SUCCESS) analysisId=$(printf '%s' "$task" | jq -r '.task.analysisId // empty' 2>/dev/null); break ;;
+              FAILED|CANCELED) break ;;
+            esac
+            sleep 5
+          done
+          if [ -z "$analysisId" ]; then
+            summary "### SonarCloud quality gate"
+            summary "Analysis did not complete (status: ${taskStatus:-unknown}). [Dashboard](${dashboardUrl})"
+            exit 0
+          fi
+          gate=$(curl -sf -u "${SONAR_TOKEN}:" "https://sonarcloud.io/api/qualitygates/project_status?analysisId=${analysisId}")
+          gateStatus=$(printf '%s' "$gate" | jq -r '.projectStatus.status // "UNKNOWN"' 2>/dev/null)
+          if [ "$gateStatus" = "OK" ]; then icon="✅"; else icon="⚠️"; fi
+          summary "### SonarCloud quality gate: ${icon} ${gateStatus} (non-blocking)"
+          summary ""
+          summary "| Condition | Status | Threshold | Actual |"
+          summary "|---|---|---|---|"
+          printf '%s' "$gate" | jq -r '.projectStatus.conditions[]? | "| \(.metricKey) | \(.status) | \(.comparator // "") \(.errorThreshold // "—") | \(.actualValue // "—") |"' >> "$GITHUB_STEP_SUMMARY" 2>/dev/null
+          summary ""
+          summary "[Dashboard](${dashboardUrl})"
+          if [ "$gateStatus" != "OK" ]; then
+            echo "::warning title=SonarCloud quality gate ${gateStatus}::Quality gate is ${gateStatus} (non-blocking). ${dashboardUrl}"
+          fi
+          exit 0
 # triggered: 2026-02-28 automatic-analysis-disabled

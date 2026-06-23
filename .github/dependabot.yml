@@ -14,6 +14,14 @@ updates:
       - "dependabot"
     commit-message:
       prefix: "deps"
+    ignore:
+      # graphql 17 changed its package `exports` map (dropped the
+      # `./package.json` subpath), breaking vitest's single-instance
+      # alias, and @graphql-tools/{merge,schema}, graphql-subscriptions,
+      # and graphql-ws still peer-cap graphql at ^16. Hold the major
+      # until the ecosystem supports v17; minor/patch still flow.
+      - dependency-name: "graphql"
+        update-types: ["version-update:semver-major"]
 
   - package-ecosystem: "github-actions"
     directory: "/"

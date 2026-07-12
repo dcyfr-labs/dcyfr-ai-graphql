@@ -5,7 +5,7 @@
   status: active
   name: dcyfr-ai-graphql
   description: Production-ready GraphQL API server template with type-safe resolvers and schema-first design
-  last_validated: 2026-04-10
+  last_validated: 2026-07-11
 -->
 
 [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/dcyfr-labs/dcyfr-ai-graphql)
@@ -14,11 +14,12 @@
 [![Node.js](https://img.shields.io/badge/Node.js-20+-green?style=flat-square&logo=node.js&logoColor=white)](https://nodejs.org/)
 [![GraphQL](https://img.shields.io/badge/GraphQL-E10098?style=flat-square&logo=graphql&logoColor=white)](https://graphql.org/)
 [![Apollo](https://img.shields.io/badge/Apollo-Server-311C87?style=flat-square&logo=apollo-graphql&logoColor=white)](https://www.apollographql.com/)
-[![Template](https://img.shields.io/badge/Template-Starter-blue?style=flat-square&logo=github)](https://github.com/dcyfr)
+[![CI](https://github.com/dcyfr-labs/dcyfr-ai-graphql/actions/workflows/ci.yml/badge.svg)](https://github.com/dcyfr-labs/dcyfr-ai-graphql/actions/workflows/ci.yml)
+[![Template](https://img.shields.io/badge/Template-Starter-blue?style=flat-square&logo=github)](https://github.com/dcyfr-labs)
 [![Sponsor](https://img.shields.io/badge/sponsor-30363D?style=flat-square&logo=GitHub-Sponsors&logoColor=#EA4AAA)](https://github.com/sponsors/dcyfr)
 [![License](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)](LICENSE)
 
-Production-ready GraphQL API server template with Apollo Server 4, schema-first design, type-safe resolvers, and real-time subscriptions. Perfect for building scalable APIs with best practices built-in.
+Production-ready GraphQL API server template with Apollo Server 5, schema-first design, type-safe resolvers, and real-time subscriptions. Perfect for building scalable APIs with best practices built-in.
 
 > **📦 Starter Template** — This is a **starter template** for cloning, not an npm package. Use `git clone` or download the source to create your own GraphQL API server. This package is marked `private: true` and is not published to npm.
 
@@ -28,7 +29,6 @@ Production-ready GraphQL API server template with Apollo Server 4, schema-first 
 
 - **DCYFR** is a registered trademark of DCYFR Labs.
 - Primary domain: [www.dcyfr.ai](https://www.dcyfr.ai)
-- Trademark guidance: [../TRADEMARK.md](../TRADEMARK.md)
 - Licensing details: [LICENSE](./LICENSE)
 
 ---
@@ -37,7 +37,7 @@ Production-ready GraphQL API server template with Apollo Server 4, schema-first 
 
 ```bash
 # Clone template
-npx degit dcyfr/dcyfr-ai-graphql my-graphql-api
+npx degit dcyfr-labs/dcyfr-ai-graphql my-graphql-api
 cd my-graphql-api
 
 # Install and start
@@ -53,10 +53,10 @@ npm run dev
 
 | Package                                | Purpose                | Type        |
 | -------------------------------------- | ---------------------- | ----------- |
-| [@dcyfr/ai](../dcyfr-ai)               | Core AI framework      | npm package |
-| [@dcyfr/ai-api](../dcyfr-ai-api)       | REST API template      | Template    |
-| [@dcyfr/ai-nodejs](../dcyfr-ai-nodejs) | Node.js starter        | Template    |
-| [dcyfr-labs](../dcyfr-labs)            | Production Next.js app | Application |
+| [@dcyfr/ai](https://github.com/dcyfr-labs/dcyfr-ai)               | Core AI framework      | npm package |
+| [@dcyfr/ai-api](https://github.com/dcyfr-labs/dcyfr-ai-api)       | REST API template      | Template    |
+| [@dcyfr/ai-nodejs](https://github.com/dcyfr-labs/dcyfr-ai-nodejs) | Node.js starter        | Template    |
+| [dcyfr-labs](https://github.com/dcyfr-labs/dcyfr-labs)            | Production Next.js app | Application |
 
 ---
 
@@ -64,7 +64,7 @@ npm run dev
 
 ### Core GraphQL
 
-- **Apollo Server 4** - Latest Apollo Server with Express integration and health checks
+- **Apollo Server 5** - Latest Apollo Server with Express 5 integration (`@as-integrations/express5`) and health checks
 - **Schema-First Design** - GraphQL SDL type definitions with modular organization
 - **Type-Safe Resolvers** - Full TypeScript types for all resolver contexts
 - **Custom Directives** - `@auth`, `@rateLimit`, `@cache` for declarative behavior
@@ -127,15 +127,7 @@ pm2 start dist/index.js --name graphql-api
 
 ### Docker Deployment
 
-```bash
-# Build and run with Docker Compose
-docker-compose up -d
-
-# Production deployment
-docker-compose -f docker-compose.prod.yml up -d
-```
-
-See [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) for comprehensive deployment guides (Kubernetes, AWS Lambda, Railway, Render, Fly.io).
+This template does not ship a `Dockerfile` or Compose files. [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) contains ready-to-copy `Dockerfile`, `docker-compose.yml`, Kubernetes manifest, and `serverless.yml` examples, plus guides for AWS Lambda, Railway, Render, and Fly.io.
 
 ## Examples
 
@@ -161,9 +153,11 @@ tsx examples/subscriptions/client.ts
 
 Comprehensive guides for production GraphQL APIs:
 
+- **[docs/API.md](docs/API.md)** - Full schema/API reference
 - **[docs/SCHEMA_DESIGN.md](docs/SCHEMA_DESIGN.md)** - Schema design patterns, type design, pagination strategies
 - **[docs/DEPLOYMENT.md](docs/DEPLOYMENT.md)** - Production deployment (Docker, Kubernetes, AWS Lambda, PaaS)
 - **[docs/PERFORMANCE.md](docs/PERFORMANCE.md)** - N+1 prevention, DataLoader, caching, query optimization
+- **[docs/SECURITY.md](docs/SECURITY.md)** - Security guidance
 - **[docs/TESTING.md](docs/TESTING.md)** - Unit/integration/E2E testing strategies with Vitest
 
 ## Project Structure
@@ -270,12 +264,16 @@ commentAdded(postId: ID!): Comment!
 
 ## Environment Variables
 
+All variables read by `src/config/env.ts`:
+
 ```bash
-PORT=4000                        # Server port
-JWT_SECRET=your-secret-key       # JWT signing secret
-JWT_EXPIRES_IN=7d                # Token expiration
-RATE_LIMIT_WINDOW_MS=60000       # Rate limit window (ms)
-RATE_LIMIT_MAX_REQUESTS=100      # Max requests per window
+PORT=4000                          # Server port (default: 4000)
+NODE_ENV=production                # JWT_SECRET becomes mandatory in production
+JWT_SECRET=your-secret-key         # JWT signing secret (required in production)
+JWT_EXPIRES_IN=7d                  # Token expiration (default: 7d)
+CORS_ORIGIN=https://yourapp.com    # Comma-separated allowed origins (default: http://localhost:3000)
+RATE_LIMIT_WINDOW_MS=60000         # Rate limit window (ms)
+RATE_LIMIT_MAX_REQUESTS=100        # Max requests per window
 ```
 
 ## Authentication
@@ -328,13 +326,11 @@ type Query {
 **Redis Caching (Production):**
 
 ```typescript
-import { RedisCache } from "apollo-server-cache-redis";
+import Keyv from "keyv";
+import { KeyvAdapter } from "@apollo/utils.keyvadapter";
 
 const server = new ApolloServer({
-  cache: new RedisCache({
-    host: "localhost",
-    port: 6379,
-  }),
+  cache: new KeyvAdapter(new Keyv("redis://localhost:6379")),
 });
 ```
 
@@ -366,31 +362,30 @@ const server = new ApolloServer({
 | **Render**     | 3 min           | Automatic       | MVP, small teams              |
 | **Fly.io**     | 5 min           | Edge deployment | Global distribution           |
 
-### Quick Deploy Commands
+### Quick Deploy
 
-**Docker:**
+The repo intentionally ships no deployment artifacts — no `Dockerfile`, `docker-compose*.yml`, `k8s/` manifests, or `serverless.yml`. Copy the ready-made examples from [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) into your project first:
+
+**Docker** — copy the Dockerfile from the guide, then:
 
 ```bash
 docker build -t graphql-api .
 docker run -p 4000:4000 -e JWT_SECRET=secret graphql-api
 ```
 
-**Kubernetes:**
+**Kubernetes** — copy the deployment/secrets manifests from the guide, then:
 
 ```bash
-kubectl apply -f k8s/deployment.yml
-kubectl apply -f k8s/service.yml
-kubectl apply -f k8s/hpa.yml
+kubectl apply -f deployment.yaml
 ```
 
-**AWS Lambda:**
+**AWS Lambda** — copy `serverless.yml` from the guide, then:
 
 ```bash
-npm install -g serverless
-serverless deploy
+npx serverless deploy
 ```
 
-See [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) for detailed platform guides.
+See [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) for the full platform guides (including Railway, Render, Fly.io).
 
 ### Environment Configuration
 
@@ -405,7 +400,7 @@ JWT_SECRET=your-secret-key-min-32-chars
 
 ```bash
 NODE_ENV=production
-ALLOWED_ORIGINS=https://yourapp.com
+CORS_ORIGIN=https://yourapp.com   # comma-separated for multiple origins
 RATE_LIMIT_MAX_REQUESTS=100
 RATE_LIMIT_WINDOW_MS=60000
 ```
@@ -414,9 +409,9 @@ RATE_LIMIT_WINDOW_MS=60000
 
 ```bash
 JWT_EXPIRES_IN=7d
-DATABASE_URL=postgresql://...
-REDIS_URL=redis://...
 ```
+
+> The template itself reads no database or Redis variables — it uses an in-memory store. When you swap in PostgreSQL/Redis per the [Production Notes](#production-notes), introduce your own `DATABASE_URL`/`REDIS_URL` handling.
 
 ## Monitoring & Observability
 
@@ -521,7 +516,7 @@ Automatic request-scoped batching and caching:
 
 ## Contributing
 
-Contributions welcome! See [CONTRIBUTING.md](../CONTRIBUTING.md) for guidelines.
+Contributions welcome! See [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines.
 
 ## License
 

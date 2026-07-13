@@ -41,7 +41,7 @@
     "graphql": "^16.14.2",
     "graphql-subscriptions": "^3.0.0",
     "graphql-tag": "^2.12.7",
-    "graphql-ws": "^6.0.8",
+    "graphql-ws": "^6.1.0",
     "ws": "^8.21.0",
     "zod": "^4.4.3"
   },

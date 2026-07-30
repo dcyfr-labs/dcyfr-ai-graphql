@@ -56,7 +56,12 @@ jobs:
           npm install -D @changesets/cli @changesets/changelog-github
       
       - name: Upgrade npm for Trusted Publishing
-        run: npm install -g npm@latest
+        # Bounded to 11.x on purpose: npm 12 requires node
+        # `^22.22.2 || ^24.15.0 || >=26.0.0`, which the 24.13.0 pin above does not
+        # satisfy — so `npm@latest` aborts with EBADENGINE and fails the release
+        # outright. `^11` keeps the >=11.5 OIDC floor this step exists for.
+        # Widen once the node pin moves to >=24.15.0.
+        run: npm install -g npm@^11
       
       - name: Verify npm version and OIDC support
         run: |

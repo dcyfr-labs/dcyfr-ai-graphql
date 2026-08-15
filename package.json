@@ -83,6 +83,6 @@
   "homepage": "https://github.com/dcyfr-labs/dcyfr-ai-graphql#readme",
   "overrides": {
     "uuid": "^14.0.0",
-    "js-yaml": "^4.2.0"
+    "js-yaml": "^4.3.1"
   }
 }

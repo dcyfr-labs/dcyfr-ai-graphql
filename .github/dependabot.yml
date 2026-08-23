@@ -37,3 +37,12 @@ updates:
       - "dependabot"
     commit-message:
       prefix: "ci"
+    # changesets/action v2 requires @changesets/cli v3 and renamed several of
+    # its inputs. Dependabot groups cannot span ecosystems, so this bump can
+    # never be paired with the npm @changesets/cli bump: whichever lands first
+    # breaks Release on main. That is exactly what happened across all ten
+    # dcyfr-ai-* repos on 2026-08-22. Majors stay manual and must ship together
+    # with the CLI bump; minor/patch updates still flow normally.
+    ignore:
+      - dependency-name: "changesets/action"
+        update-types: ["version-update:semver-major"]

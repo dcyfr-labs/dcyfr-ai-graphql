@@ -1,8 +1,47 @@
 {
   "repo_notes": [
     {
-      "content": "GraphQL API layer for DCYFR AI services. Document the GraphQL schema design, resolver implementations, type system, query/mutation patterns, and integration with underlying AI services and data sources.",
-      "author": "DCYFR Engineering"
+      "content": "A starter template. Schema-first is the organising decision: the schema under src/schema/ drives the resolver types.",
+      "author": "rei-doc-specialist"
+    },
+    {
+      "content": "Dataloaders and subscriptions are the two subsystems people get wrong; give each its own page.",
+      "author": "rei-doc-specialist"
+    }
+  ],
+  "pages": [
+    {
+      "title": "Server Architecture",
+      "purpose": "The schema-first design: how the schema, resolvers and generated types relate, and how the server is assembled and configured."
+    },
+    {
+      "title": "Schema",
+      "purpose": "The type definitions under src/schema/: the domain model, how the schema is composed from modules, and the code generation step.",
+      "parent": "Server Architecture"
+    },
+    {
+      "title": "Resolvers",
+      "purpose": "The resolvers under src/resolvers/: the resolver signature, context, error handling, and the boundary to the service layer.",
+      "parent": "Schema"
+    },
+    {
+      "title": "Dataloaders",
+      "purpose": "The dataloaders under src/dataloaders/: the N+1 problem they solve, batching and caching semantics, and per-request lifetime.",
+      "parent": "Resolvers"
+    },
+    {
+      "title": "Subscriptions",
+      "purpose": "Real-time subscriptions under src/subscriptions/: transport, the pub/sub backend, and connection lifecycle.",
+      "parent": "Server Architecture"
+    },
+    {
+      "title": "Authentication and Middleware",
+      "purpose": "The auth flow and the middleware chain under src/middleware/, including how a resolver learns who is asking.",
+      "parent": "Server Architecture"
+    },
+    {
+      "title": "Examples and Testing",
+      "purpose": "The basic-queries, auth-flow and subscriptions examples, and the Vitest suite under tests/unit."
     }
   ]
 }

@@ -55,11 +55,12 @@
     "@types/ws": "^8.5.12",
     "@typescript-eslint/eslint-plugin": "^8.69.0",
     "@typescript-eslint/parser": "^8.69.0",
+    "@vitest/coverage-v8": "^5.0.0",
     "eslint": "^10.9.1",
     "tsx": "^4.23.13",
     "typescript": "^6.0.3",
-    "vitest": "^4.1.11",
-    "@vitest/coverage-v8": "^4.1.11"
+    "vite": "^8.2.2",
+    "vitest": "^5.0.0"
   },
   "engines": {
     "node": ">=20.0.0"

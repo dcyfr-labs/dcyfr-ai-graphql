@@ -44,7 +44,7 @@
     "graphql-tag": "^2.12.7",
     "graphql-ws": "^6.2.1",
     "ws": "^8.21.3",
-    "zod": "^4.6.2"
+    "zod": "^4.6.5"
   },
   "devDependencies": {
     "@changesets/changelog-github": "^1.0.1",

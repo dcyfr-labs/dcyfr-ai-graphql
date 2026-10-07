@@ -27,7 +27,7 @@ Production-ready GraphQL API server template with Apollo Server 5, schema-first 
 
 `@dcyfr/ai-graphql` is maintained by **DCYFR Labs** as part of the DCYFR starter template portfolio.
 
-- **DCYFR** is a trademark of DCYFR Labs.
+- **DCYFR** is a trademark of Drew Gowan.
 - Primary domain: [www.dcyfr.ai](https://www.dcyfr.ai)
 - Licensing details: [LICENSE](./LICENSE)
 

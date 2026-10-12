@@ -10,7 +10,7 @@ By contributing to `@dcyfr/ai-graphql`, you agree that:
 
 ### Trademark
 
-Do not use "DCYFR" trademarks in ways that imply endorsement without permission. See [../TRADEMARK.md](../TRADEMARK.md) for usage guidelines.
+DCYFR is a trademark of Drew Gowan. Do not use it in ways that imply endorsement without permission.
 
 **Questions?** Contact [licensing@dcyfr.ai](mailto:licensing@dcyfr.ai)
 

@@ -871,7 +871,7 @@ export const postResolvers = {
 ## Support
 
 - **Documentation:** https://dcyfr.ai/docs/ai-graphql
-- **GitHub:** https://github.com/dcyfr/dcyfr-ai-graphql
+- **GitHub:** https://github.com/dcyfr-labs/dcyfr-ai-graphql
 - **Email:** hello@dcyfr.ai
 
 ---

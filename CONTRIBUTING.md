@@ -1,5 +1,9 @@
 # Contributing to @dcyfr/ai-graphql
 
+## Code of Conduct
+
+This project follows the DCYFR Labs [Code of Conduct](https://github.com/dcyfr-labs/.github/blob/main/CODE_OF_CONDUCT.md).
+
 ## Licensing & Contributions
 
 By contributing to `@dcyfr/ai-graphql`, you agree that:

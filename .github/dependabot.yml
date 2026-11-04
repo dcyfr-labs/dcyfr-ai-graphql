@@ -1,6 +1,8 @@
 version: 2
 updates:
   - package-ecosystem: "npm"
+    assignees:
+      - "dcyfr"
     directory: "/"
     schedule:
       interval: "weekly"
@@ -24,6 +26,8 @@ updates:
         update-types: ["version-update:semver-major"]
 
   - package-ecosystem: "github-actions"
+    assignees:
+      - "dcyfr"
     directory: "/"
     schedule:
       interval: "weekly"

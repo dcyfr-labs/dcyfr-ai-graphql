@@ -153,6 +153,7 @@ tsx examples/subscriptions/client.ts
 
 Comprehensive guides for production GraphQL APIs:
 
+- **[docs/README.md](docs/README.md)** - Documentation index
 - **[docs/API.md](docs/API.md)** - Full schema/API reference
 - **[docs/SCHEMA_DESIGN.md](docs/SCHEMA_DESIGN.md)** - Schema design patterns, type design, pagination strategies
 - **[docs/DEPLOYMENT.md](docs/DEPLOYMENT.md)** - Production deployment (Docker, Kubernetes, AWS Lambda, PaaS)

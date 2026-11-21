@@ -2,11 +2,11 @@
   "repo_notes": [
     {
       "content": "A starter template. Schema-first is the organising decision: the schema under src/schema/ drives the resolver types.",
-      "author": "rei-doc-specialist"
+      "author": "dcyfr-doc-specialist"
     },
     {
       "content": "Dataloaders and subscriptions are the two subsystems people get wrong; give each its own page.",
-      "author": "rei-doc-specialist"
+      "author": "dcyfr-doc-specialist"
     }
   ],
   "pages": [
